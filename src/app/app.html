@@ -9,9 +9,9 @@
 
   <app-task-form #form (created)="add($event)" />
 
-  <main class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <main cdkDropListGroup class="grid grid-cols-1 md:grid-cols-3 gap-4">
     @for (column of columns; track column.status) {
-      <app-task-column [title]="column.title" [tasks]="tasksBy(column.status)" (removed)="remove($event)" />
+      <app-task-column [status]="column.status" [title]="column.title" [tasks]="tasksBy(column.status)" (moved)="move($event.id, $event.status)" (removed)="remove($event)" />
     }
   </main>
 </div>

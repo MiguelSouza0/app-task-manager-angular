@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { Status, Task } from './task';
 import { TaskForm } from './task-form/task-form';
 import { TaskColumn } from './task-column/task-column';
@@ -10,7 +11,7 @@ function addDays(n: number) {
 }
 
 @Component({
-  imports: [TaskForm, TaskColumn],
+  imports: [CdkDropListGroup, TaskForm, TaskColumn],
   selector: 'app-root',
   templateUrl: './app.html',
 })
@@ -33,6 +34,10 @@ export class App {
 
   protected add(task: Omit<Task, 'id' | 'status'>) {
     this.tasks.update((tasks) => [...tasks, { id: String(Date.now()), ...task, status: 'todo' }]);
+  }
+
+  protected move(id: string, status: Status) {
+    this.tasks.update((tasks) => tasks.map((t) => (t.id === id ? { ...t, status } : t)));
   }
 
   protected remove(id: string) {
