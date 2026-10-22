@@ -1,0 +1,13 @@
+<div class="p-3 border border-gray-200 rounded bg-white shadow-sm">
+  <div class="flex items-start justify-between gap-2">
+    <div class="flex items-center gap-3">
+      <span class="size-3.5 rounded-full" [class]="dueColor()" title="Proximidade"></span>
+      <div>
+        <div class="font-semibold text-slate-800">{{ task().title }}</div>
+        <div class="text-xs text-slate-500">Término: {{ task().due }} • {{ level() }}</div>
+      </div>
+    </div>
+    <button (click)="removed.emit(task().id)" class="text-xs text-red-500">Excluir</button>
+  </div>
+  <p class="mt-2 text-sm text-slate-600">{{ task().desc }}</p>
+</div>

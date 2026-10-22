@@ -1,0 +1,17 @@
+<div class="max-w-6xl mx-auto">
+  <header class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-slate-800">Gerenciador de Tarefas - Estudos</h1>
+      <p class="text-slate-600 mt-1">Adicione novas tarefas pelo botão <span class="font-semibold">+</span>.</p>
+    </div>
+    <button (click)="form.open()" aria-label="Adicionar tarefa" class="w-10 h-10 rounded-full bg-indigo-600 text-white text-2xl hover:bg-indigo-700">+</button>
+  </header>
+
+  <app-task-form #form (created)="add($event)" />
+
+  <main class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    @for (column of columns; track column.status) {
+      <app-task-column [title]="column.title" [tasks]="tasksBy(column.status)" (removed)="remove($event)" />
+    }
+  </main>
+</div>
